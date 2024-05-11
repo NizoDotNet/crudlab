@@ -1,0 +1,9 @@
+﻿@using Entities
+@model Specialization
+
+<form method="post">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <select asp-items="ViewBag.Faculties" asp-for="FacultyId"></select>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

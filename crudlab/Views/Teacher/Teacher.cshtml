@@ -1,0 +1,30 @@
+﻿@using Entities
+@model Teacher
+
+<div class="container">
+
+    <p>ID: @Model.Id</p>
+    <p>Name: @Model.Name</p>
+    <p>Surname: @Model.Surname</p>
+    <p>Experience: @Model.Experience</p>
+    <h5>Specialities</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var i in Model.Specializations)
+            {
+                <tr>
+                    <th>@i.Id</th>
+                    <th><a asp-controller="Specialization" asp-action="Get" asp-route-id="@i.Id">@i.Name</a></th>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

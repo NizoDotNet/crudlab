@@ -1,0 +1,12 @@
+﻿@using Entities
+@model Faculty
+
+<div class="container">
+    <form method="post">
+        <input readonly asp-for="Id"/>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <button type="submit" class="btn btn-primary" asp-route-id="Model.Id">Submit</button>
+
+    </form>
+</div>

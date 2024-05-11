@@ -1,0 +1,38 @@
+﻿@using Entities;
+@model IEnumerable<Faculty>
+
+<div class="container">
+    <div class="row">
+        <a asp-controller="Faculty" asp-action="Create" class="btn btn-primary">Add</a>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>
+                            @i.Id
+                        </td>
+                        <td>
+                            <a asp-controller="Faculty" asp-action="Get" asp-route-id="@i.Id">@i.Name</a>
+                            
+                        </td>
+                        <td>
+                            <a class="btn" asp-action="Update" asp-route-id="@i.Id">Edit</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@i.Id">Delete</a>
+                        </td>
+                            
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

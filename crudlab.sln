@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "crudlab", "crudlab\crudlab.csproj", "{9650FBFE-FDC9-4EB5-AC30-471D06BBF51E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{FAC1A2A6-8DF4-4AC6-92B9-C97252CBC0A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9650FBFE-FDC9-4EB5-AC30-471D06BBF51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9650FBFE-FDC9-4EB5-AC30-471D06BBF51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9650FBFE-FDC9-4EB5-AC30-471D06BBF51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9650FBFE-FDC9-4EB5-AC30-471D06BBF51E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAC1A2A6-8DF4-4AC6-92B9-C97252CBC0A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAC1A2A6-8DF4-4AC6-92B9-C97252CBC0A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAC1A2A6-8DF4-4AC6-92B9-C97252CBC0A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAC1A2A6-8DF4-4AC6-92B9-C97252CBC0A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBD010EB-0381-453B-B667-0B1EA826EE46}
+	EndGlobalSection
+EndGlobal
