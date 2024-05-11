@@ -14,11 +14,13 @@ public class AppDbContext : DbContext
     public DbSet<Specialization> Specializations { get; set; }
     public DbSet<Teacher> Teachers { get; set; }
     public DbSet<Student> Students { get; set; }
+    public DbSet<Grade> Grades { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new SpecializationConfig());
+        modelBuilder.ApplyConfiguration(new StudentConfig());
     }
 
 }

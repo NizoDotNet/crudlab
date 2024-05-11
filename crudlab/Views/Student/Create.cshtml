@@ -1,0 +1,19 @@
+﻿@using crudlab.Models.DTO.Student
+@model AddStudentDto
+
+<div class="container">
+    <form method="post">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <label asp-for="Surname"></label>
+        <input asp-for="Surname" />
+        <label asp-for="Gpa"></label>
+        <input asp-for="Gpa" />
+        <select asp-for="SpecializationId" asp-items="ViewBag.Specs">
+            <option></option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+</div>

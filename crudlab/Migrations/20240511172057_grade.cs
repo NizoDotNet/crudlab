@@ -6,7 +6,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace crudlab.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class grade : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,7 +91,7 @@ namespace crudlab.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "students",
+                name: "Students",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -103,15 +103,43 @@ namespace crudlab.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_students", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_students_Specializations_SpecializationId",
+                        name: "FK_Students_Specializations_SpecializationId",
                         column: x => x.SpecializationId,
                         principalTable: "Specializations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Grades",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext", nullable: false),
+                    EntryScore = table.Column<int>(type: "int", nullable: false),
+                    ExamScore = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Grades", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Grades_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Grades_StudentId",
+                table: "Grades",
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Specializations_FacultyId",
@@ -124,8 +152,8 @@ namespace crudlab.Migrations
                 column: "TeachersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_students_SpecializationId",
-                table: "students",
+                name: "IX_Students_SpecializationId",
+                table: "Students",
                 column: "SpecializationId");
         }
 
@@ -133,10 +161,13 @@ namespace crudlab.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Grades");
+
+            migrationBuilder.DropTable(
                 name: "SpecializationTeacher");
 
             migrationBuilder.DropTable(
-                name: "students");
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "Teachers");

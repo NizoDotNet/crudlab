@@ -33,6 +33,32 @@ namespace crudlab.Migrations
                     b.ToTable("Faculties");
                 });
 
+            modelBuilder.Entity("Entities.Grade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("EntryScore")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExamScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Grades");
+                });
+
             modelBuilder.Entity("Entities.Specialization", b =>
                 {
                     b.Property<int>("Id")
@@ -77,7 +103,7 @@ namespace crudlab.Migrations
 
                     b.HasIndex("SpecializationId");
 
-                    b.ToTable("students");
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Entities.Teacher", b =>
@@ -115,6 +141,17 @@ namespace crudlab.Migrations
                     b.HasIndex("TeachersId");
 
                     b.ToTable("SpecializationTeacher");
+                });
+
+            modelBuilder.Entity("Entities.Grade", b =>
+                {
+                    b.HasOne("Entities.Student", "Student")
+                        .WithMany("Grades")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Entities.Specialization", b =>
@@ -162,6 +199,11 @@ namespace crudlab.Migrations
             modelBuilder.Entity("Entities.Specialization", b =>
                 {
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("Entities.Student", b =>
+                {
+                    b.Navigation("Grades");
                 });
 #pragma warning restore 612, 618
         }

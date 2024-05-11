@@ -1,0 +1,32 @@
+﻿@using Entities
+@model Student
+<div class="container">
+
+    <p>ID: @Model.Id</p>
+    <p>Name: @Model.Name</p>
+    <p>Surname: @Model.Surname</p>
+    <p>Speciality: <a asp-controller="Specialization" asp-action="Get" asp-route-id="@Model.SpecializationId"></a>@Model.Specialization.Name</p>
+    <p>GPA: @Model.Gpa</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Entry Score</th>
+                <th>Exam Score</th>
+                <th>Final Score</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var i in Model.Grades)
+            {
+                <tr>
+                    <th>@i.Id</th>
+                    <th>@i.Name</th>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

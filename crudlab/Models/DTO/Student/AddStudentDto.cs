@@ -1,12 +1,12 @@
-﻿namespace Entities;
+﻿using Entities;
 
-public class Student
+namespace crudlab.Models.DTO.Student;
+
+public class AddStudentDto
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;
     public string Surname { get; set; } = null!;
     public double Gpa { get; set; }
-    public Specialization Specialization { get; set; } = null!;
     public int SpecializationId { get; set; }
-    public IList<Grade> Grades { get; set; }
 }
