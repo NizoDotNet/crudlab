@@ -26,7 +26,7 @@ public class SpecializationService : ISpecializzationRepository
     {
         var spec = await _db.Specializations
             .Include(c => c.Students)
-            .Include(c => c.Teachers)
+            .Include(c => c.Subjects)
             .SingleOrDefaultAsync(c => c.Id == id);
         
         if (spec is not null)
@@ -39,8 +39,8 @@ public class SpecializationService : ISpecializzationRepository
     public async Task<Specialization> Get(int id)
     {
         return await _db.Specializations
-            .Include(c => c.Teachers)
             .Include(c => c.Students)
+            .Include(c => c.Subjects)
             .Include(c => c.Faculty)
             .SingleOrDefaultAsync(c => c.Id == id);
     }
@@ -52,14 +52,14 @@ public class SpecializationService : ISpecializzationRepository
 
     public async Task<IEnumerable<Specialization>> GetAll()
     {
-        return await _db.Specializations.Include(c => c.Faculty).AsNoTracking().ToListAsync();
+        return await _db.Specializations.Include(c => c.Subjects).Include(c => c.Faculty).AsNoTracking().ToListAsync();
     }
 
     public async Task<Specialization> GetByName(string name)
     {
         return await _db.Specializations
             .Include(c => c.Students)
-            .Include(c => c.Teachers)
+            .Include(c => c.Subjects)
             .Include(c => c.Faculty)
             .FirstOrDefaultAsync(c => c.Name == name);
     }
@@ -71,6 +71,7 @@ public class SpecializationService : ISpecializzationRepository
         {
             spec.Name = entity.Name;
             spec.FacultyId = entity.FacultyId;
+            spec.Subjects = entity.Subjects;
             await _db.SaveChangesAsync();
         }
     }

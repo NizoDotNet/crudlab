@@ -1,0 +1,56 @@
+﻿@using Entities
+@model Subject
+
+<div class="container">
+
+    <p>ID: @Model.Id</p>
+    <p>Name: @Model.Name</p>
+    <div class="row">
+        <div class="col">
+            <h5>Specialities</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var i in Model.Specializations)
+                    {
+                        <tr>
+                            <th>@i.Id</th>
+                            <th><a asp-controller="Specialization" asp-action="Get" asp-route-id="@i.Id">@i.Name</a></th>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h5>Teachers</h5>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var i in Model.Teachers)
+                    {
+                        <tr>
+                            <th>@i.Id</th>
+                            <th><a asp-controller="Teacher" asp-action="Get" asp-route-id="@i.Id">@($"{i.Name} {i.Surname}")</a></th>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>

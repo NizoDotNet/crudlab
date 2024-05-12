@@ -1,13 +1,11 @@
 ﻿using Entities;
 
-namespace crudlab.Models.DTO.Teacher;
+namespace crudlab.Models.DTO.Spec;
 
-public class AddTeacherDto
+public class AddSpecDto
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;
-    public string Surname { get; set; } = null!;
-    public int Experience { get; set; }
+    public int FacultyId { get; set; }
     public IList<int> SubjectIds { get; set; } = [];
 }
-

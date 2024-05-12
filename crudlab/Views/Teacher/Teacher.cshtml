@@ -7,7 +7,7 @@
     <p>Name: @Model.Name</p>
     <p>Surname: @Model.Surname</p>
     <p>Experience: @Model.Experience</p>
-    <h5>Specialities</h5>
+    <h5>Subjects</h5>
     <table class="table">
         <thead>
             <tr>
@@ -17,11 +17,11 @@
 
         </thead>
         <tbody>
-            @foreach (var i in Model.Specializations)
+            @foreach (var i in Model.Subjects)
             {
                 <tr>
                     <th>@i.Id</th>
-                    <th><a asp-controller="Specialization" asp-action="Get" asp-route-id="@i.Id">@i.Name</a></th>
+                    <th><a asp-controller="Subject" asp-action="Get" asp-route-id="@i.Id">@i.Name</a></th>
                 </tr>
             }
 

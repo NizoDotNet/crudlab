@@ -15,7 +15,8 @@ public class SpecializationConfig : IEntityTypeConfiguration<Specialization>
         builder.HasMany(c => c.Students)
             .WithOne(c => c.Specialization);
 
-        builder.HasMany(c => c.Teachers)
+
+        builder.HasMany(c => c.Subjects)
             .WithMany(c => c.Specializations);
     }
 }

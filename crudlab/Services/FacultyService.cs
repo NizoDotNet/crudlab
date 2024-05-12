@@ -25,7 +25,6 @@ public class FacultyService : IRepository<Faculty>
     {
         var faculty = await _db.Faculties
             .Include(c => c.Specializations)
-            .ThenInclude(c => c.Teachers)
             .Include(c => c.Specializations)
             .ThenInclude(c => c.Students)
             .SingleOrDefaultAsync(c => c.Id == id);

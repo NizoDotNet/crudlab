@@ -11,5 +11,6 @@ public class StudentConfig : IEntityTypeConfiguration<Student>
         builder.HasMany(c => c.Grades)
             .WithOne(c => c.Student)
             .IsRequired();
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using crudlab.Repositories;
 using crudlab.Services;
 using Entities;
+using Microsoft.AspNetCore.WebSockets;
 
 namespace crudlab.ExtantionMethods;
 
@@ -12,5 +13,7 @@ public static class AddDependencies
         services.AddScoped<ISpecializzationRepository,  SpecializationService>();  
         services.AddScoped<IRepository<Teacher>, TeacherService>();
         services.AddScoped<IRepository<Student>, StudentService>();
+        services.AddScoped<IRepository<Grade>, GradeService>();
+        services.AddScoped<IRepository<Subject>, SubjectService>();
     }
 }

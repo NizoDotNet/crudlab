@@ -9,13 +9,13 @@ namespace crudlab.Controllers
     public class TeacherController : Controller
     {
         private readonly IRepository<Teacher> _teacherService;
-        private readonly ISpecializzationRepository _specService;
+        private readonly IRepository<Subject> _subjectService;
 
 
-        public TeacherController(IRepository<Teacher> teacherService, ISpecializzationRepository specService)
+        public TeacherController(IRepository<Teacher> teacherService, IRepository<Subject> subjectService)
         {
             _teacherService = teacherService;
-            _specService = specService;
+            _subjectService = subjectService;
         }
 
         public async Task<IActionResult> Index()
@@ -35,8 +35,8 @@ namespace crudlab.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var specs = await _specService.GetAll();
-            SelectList specsList = new(specs, "Id", "Name");
+            var subjects = await _subjectService.GetAll();
+            SelectList specsList = new(subjects, "Id", "Name");
             ViewBag.Specs = specsList;
             return View();
         }
@@ -50,8 +50,8 @@ namespace crudlab.Controllers
                 Surname = teacherDto.Surname,
                 Experience = teacherDto.Experience
             };
-            var specs = await _specService.Get(c => teacherDto.SpecializationIds.Contains(c.Id));
-            teacher.Specializations = specs;
+            var subjects = await _subjectService.Get(c => teacherDto.SubjectIds.Contains(c.Id));
+            teacher.Subjects = subjects;
             await _teacherService.Add(teacher);
             return RedirectToAction("Index");
         }
@@ -72,8 +72,8 @@ namespace crudlab.Controllers
                 Surname = teacher.Surname,
                 Experience = teacher.Experience
             };
-            var specs = await _specService.GetAll();
-            SelectList specsList = new(specs, "Id", "Name");
+            var subjects = await _subjectService.GetAll();
+            SelectList specsList = new(subjects, "Id", "Name");
             ViewBag.Specs = specsList;  
 
             return View(teacherDto);
@@ -88,8 +88,8 @@ namespace crudlab.Controllers
                 Surname = teacherDto.Surname,
                 Experience = teacherDto.Experience
             };
-            var specs = await _specService.Get(c => teacherDto.SpecializationIds.Contains(c.Id));
-            teacher.Specializations = specs;
+            var subs = await _subjectService.Get(c => teacherDto.SubjectIds.Contains(c.Id));
+            teacher.Subjects = subs;
             await _teacherService.Update(id, teacher);
 
             return RedirectToAction("Index");

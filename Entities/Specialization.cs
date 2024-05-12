@@ -8,5 +8,5 @@ public class Specialization
     public int FacultyId { get; set; }
 
     public IList<Student> Students { get; set; } = [];
-    public IList<Teacher> Teachers { get; set; } = [];
+    public IList<Subject> Subjects { get; set; } = [];
 }

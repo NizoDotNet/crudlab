@@ -1,5 +1,5 @@
 ﻿@using Entities
-@model IEnumerable<Teacher>
+@model IEnumerable<Subject>
 
 <div class="container">
     <div class="row">
@@ -10,8 +10,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Experience</th>
+                    <th>Name</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,11 +21,7 @@
                             @i.Id
                         </td>
                         <td>
-                            <a asp-action="Get" asp-route-id="@i.Id">@($"{i.Name} {i.Surname}")</a>
-
-                        </td>
-                        <td>
-                            @i.Experience
+                            <a asp-controller="Subject" asp-action="Get" asp-route-id="@i.Id">@($"{i.Name}")</a>
                         </td>
                         <td>
                             <a class="btn" asp-action="Update" asp-route-id="@i.Id">Edit</a>

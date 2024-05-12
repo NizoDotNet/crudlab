@@ -35,33 +35,31 @@ public class GradeService : IRepository<Grade>
 
     public Task<Grade> Get(int id)
     {
-        return _db.Grades.FirstOrDefaultAsync(c => c.Id == id);
+        return _db.Grades.Include(c => c.Subject).FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<List<Grade>> Get(Expression<Func<Grade, bool>> expression)
     {
-        return await _db.Grades.Where(expression).ToListAsync();
+        return await _db.Grades.Include(c => c.Subject).Where(expression).ToListAsync();
     }
 
     public async Task<IEnumerable<Grade>> GetAll()
     {
-        return await _db.Grades.ToListAsync();
+        return await _db.Grades.Include(c => c.Subject).ToListAsync();
     }
 
     public async Task<Grade> GetByName(string name)
     {
-        return await _db.Grades.FirstOrDefaultAsync(c => c.Name == name);
+        return await _db.Grades.Include(c => c.Subject).FirstOrDefaultAsync(c => c.Subject.Name == name);
     }
 
     public async Task Update(int id, Grade entity)
     {
-        var grade = await _db.Grades.FirstOrDefaultAsync(_ => _.Id == id);
+        var grade = await _db.Grades.Include(c => c.Subject).FirstOrDefaultAsync(_ => _.Id == id);
         if(grade is not null)
         {
-            grade.Name = entity.Name;
             grade.EntryScore = entity.EntryScore;
             grade.ExamScore = entity.ExamScore;
-            grade.StudentId = entity.StudentId;
             await _db.SaveChangesAsync();
         }
     }

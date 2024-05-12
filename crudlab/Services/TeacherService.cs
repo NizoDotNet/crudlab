@@ -34,7 +34,7 @@ public class TeacherService : IRepository<Teacher>
 
     public Task<Teacher> Get(int id)
     {
-        return _db.Teachers.Include(c => c.Specializations).SingleOrDefaultAsync(c => c.Id == id);
+        return _db.Teachers.Include(c => c.Subjects).SingleOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<List<Teacher>> Get(Expression<Func<Teacher, bool>> expression)
@@ -55,7 +55,7 @@ public class TeacherService : IRepository<Teacher>
     public async Task Update(int id, Teacher entity)
     {
         var teacher = await _db.Teachers
-            .Include(c => c.Specializations)
+            .Include(c => c.Subjects)
             .FirstOrDefaultAsync(c => c.Id == id);
         
         if (teacher is not null)
@@ -63,7 +63,7 @@ public class TeacherService : IRepository<Teacher>
             teacher.Name = entity.Name;
             teacher.Surname = entity.Surname;
             teacher.Experience = entity.Experience;
-            teacher.Specializations = entity.Specializations;
+            teacher.Subjects = entity.Subjects;
             await _db.SaveChangesAsync();
         }
     }
