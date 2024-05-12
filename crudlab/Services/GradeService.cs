@@ -1,5 +1,6 @@
 ﻿using crudlab.DatabaseContext;
 using crudlab.Repositories;
+using crudlab.Services.Helpers;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -9,15 +10,24 @@ namespace crudlab.Services;
 public class GradeService : IRepository<Grade>
 {
     private readonly AppDbContext _db;
+    private readonly GpaCalculator _gpa;
 
-    public GradeService(AppDbContext db)
+    public GradeService(AppDbContext db, GpaCalculator gpa)
     {
         _db = db;
+        _gpa = gpa;
+    }
+
+    private async Task UpdateGpa(int studentId)
+    {
+        var student = await _db.Students.FirstOrDefaultAsync(c => c.Id == studentId);
+        student.Gpa = _gpa.GetGpa(student.Grades);
     }
 
     public async Task Add(Grade entity)
     {
         await _db.Grades.AddAsync(entity);
+        await UpdateGpa(entity.StudentId);
         await _db.SaveChangesAsync();
 
     }
@@ -28,6 +38,7 @@ public class GradeService : IRepository<Grade>
         if (grade is not null)
         {
             _db.Grades.Remove(grade);
+            await UpdateGpa(grade.StudentId);
             await _db.SaveChangesAsync();
 
         }
@@ -60,6 +71,7 @@ public class GradeService : IRepository<Grade>
         {
             grade.EntryScore = entity.EntryScore;
             grade.ExamScore = entity.ExamScore;
+            await UpdateGpa(grade.StudentId);
             await _db.SaveChangesAsync();
         }
     }

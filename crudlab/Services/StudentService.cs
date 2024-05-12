@@ -53,13 +53,12 @@ public class StudentService : IRepository<Student>
 
     public async Task Update(int id, Student entity)
     {
-        var student = await _db.Students.Include(c => c.Specialization).SingleOrDefaultAsync(c => c.Id == id);
+        var student = await _db.Students.SingleOrDefaultAsync(c => c.Id == id);
         if (student is not null)
         {
             student.Name = entity.Name;
             student.Surname = entity.Surname;
-            student.Specialization = entity.Specialization;
-            student.Gpa = entity.Gpa;
+            student.SpecializationId = entity.SpecializationId;
             await _db.SaveChangesAsync();
         }
     }

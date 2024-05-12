@@ -28,6 +28,7 @@ public class StudentController : Controller
         var specs = await _specService.GetAll();
         SelectList specsList = new(specs, "Id", "Name");
         ViewBag.Specs = specsList;
+
         return View();
     }
 
@@ -38,7 +39,6 @@ public class StudentController : Controller
         {
             Name = studentDto.Name,
             Surname = studentDto.Surname,
-            Gpa = studentDto.Gpa,
             SpecializationId = studentDto.SpecializationId
         };
         await _studentService.Add(student);
@@ -49,6 +49,45 @@ public class StudentController : Controller
     {
         var student = await _studentService.Get(id);
         if(student != null) return View("Student", student);
-        return NotFound("Student");
+        return NotFound();
+    }
+
+    public async Task<IActionResult> Update(int id)
+    {
+        var student = await _studentService.Get(id);
+        if (student != null)
+        {
+            var studentDto = new AddStudentDto()
+            {
+                Name = student.Name,
+                Surname =student.Surname,
+                Id = id,
+                SpecializationId = student.SpecializationId
+            };
+            var specs = await _specService.GetAll();
+            SelectList specsList = new(specs, "Id", "Name");
+            ViewBag.Specs = specsList;
+            return View(studentDto);
+        }
+        return NotFound();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Update(int id, AddStudentDto studentDto)
+    {
+        Student student = new()
+        {
+            Name = studentDto.Name,
+            Surname = studentDto.Surname,
+            SpecializationId = studentDto.SpecializationId
+        };
+        await _studentService.Update(id, student);
+        return RedirectToAction("Index");
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        await _studentService.Delete(id);
+        return RedirectToAction("Index");
     }
 }

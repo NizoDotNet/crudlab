@@ -1,5 +1,6 @@
 ﻿using crudlab.Repositories;
 using crudlab.Services;
+using crudlab.Services.Helpers;
 using Entities;
 using Microsoft.AspNetCore.WebSockets;
 
@@ -15,5 +16,6 @@ public static class AddDependencies
         services.AddScoped<IRepository<Student>, StudentService>();
         services.AddScoped<IRepository<Grade>, GradeService>();
         services.AddScoped<IRepository<Subject>, SubjectService>();
+        services.AddSingleton<GpaCalculator>();
     }
 }
