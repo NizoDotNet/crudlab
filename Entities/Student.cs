@@ -8,5 +8,5 @@ public class Student
     public double Gpa { get; set; }
     public Specialization Specialization { get; set; } = null!;
     public int SpecializationId { get; set; }
-    public IList<Grade> Grades { get; set; }
+    public IList<Grade> Grades { get; set; } = [];
 }

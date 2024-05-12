@@ -21,7 +21,7 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new SpecializationConfig());
-        modelBuilder.ApplyConfiguration(new StudentConfig());
+        modelBuilder.ApplyConfiguration(new TeacjerConfig());
         modelBuilder.ApplyConfiguration(new  GradeConfig());
     }
 

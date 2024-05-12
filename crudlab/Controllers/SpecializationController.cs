@@ -79,7 +79,12 @@ public class SpecializationController : Controller
             var subjects = await _subjectService.GetAll();
             SelectList subjectList = new(subjects, "Id", "Name");
             ViewBag.Subjects = subjectList;
-            return View();
+            AddSpecDto specDto = new()
+            {
+                Name = spec.Name,
+                FacultyId = spec.FacultyId
+            };
+            return View(specDto);
         }
         return NotFound();
     }

@@ -1,5 +1,5 @@
-﻿@using Entities
-@model Specialization
+﻿@using crudlab.Models.DTO.Spec
+@model AddSpecDto
 
 <div class="container">
     <form method="post">
@@ -7,6 +7,8 @@
         <label asp-for="Name"></label>
         <input asp-for="Name" />
         <select asp-items="ViewBag.Faculties" asp-for="FacultyId"></select>
+        <select asp-items="ViewBag.Subjects" asp-for="SubjectIds"></select>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

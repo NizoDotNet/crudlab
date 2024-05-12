@@ -45,7 +45,7 @@ public class FacultyController : Controller
     public async Task<IActionResult> Update(int id)
     {
         var faculty = await _facultyService.Get(id);
-        if(faculty is not null) return View();
+        if(faculty is not null) return View(faculty);
         return NotFound();
     }
 

@@ -65,18 +65,22 @@ namespace crudlab.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var teacher = await _teacherService.Get(id);
-            var teacherDto = new AddTeacherDto()
+            if (teacher is not null)
             {
-                Id = id,
-                Name = teacher.Name,
-                Surname = teacher.Surname,
-                Experience = teacher.Experience
-            };
-            var subjects = await _subjectService.GetAll();
-            SelectList specsList = new(subjects, "Id", "Name");
-            ViewBag.Specs = specsList;  
+                var teacherDto = new AddTeacherDto()
+                {
+                    Id = id,
+                    Name = teacher.Name,
+                    Surname = teacher.Surname,
+                    Experience = teacher.Experience
+                };
+                var subjects = await _subjectService.GetAll();
+                SelectList specsList = new(subjects, "Id", "Name");
+                ViewBag.Specs = specsList;
 
-            return View(teacherDto);
+                return View(teacherDto);
+            }
+            return NotFound();
         }
 
         [HttpPost]

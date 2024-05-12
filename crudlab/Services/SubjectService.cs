@@ -54,11 +54,10 @@ public class SubjectService : IRepository<Subject>
 
     public async Task Update(int id, Subject entity)
     {
-        var sub = await _db.Subjects.Include(c => c.Specializations).SingleOrDefaultAsync(c => c.Id == id); 
+        var sub = await _db.Subjects.SingleOrDefaultAsync(c => c.Id == id); 
         if(sub is not null)
         {
             sub.Name = entity.Name;
-            sub.Specializations = entity.Specializations;
             await _db.SaveChangesAsync();
         }
     }
