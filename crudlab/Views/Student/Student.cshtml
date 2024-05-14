@@ -22,8 +22,11 @@
             @foreach (var i in Model.Grades)
             {
                 <tr>
-                    <th>@i.Id</th>
-                    <th>@i.Subject.Name</th>
+                    <td>@i.Id</td>
+                    <td>@i.Subject.Name</td>
+                    <td>@i.EntryScore</td>
+                    <td>@i.ExamScore</td>
+                    <td>@(i.EntryScore + i.ExamScore)</td>
                 </tr>
             }
 

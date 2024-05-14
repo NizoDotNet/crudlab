@@ -33,7 +33,11 @@ public class StudentService : IRepository<Student>
 
     public async Task<Student> Get(int id)
     {
-        return await _db.Students.Include(c => c.Specialization).Include(c => c.Grades).SingleOrDefaultAsync(c => c.Id == id);
+        return await _db.Students
+            .Include(c => c.Specialization)
+            .Include(c => c.Grades)
+                .ThenInclude(c => c.Subject)
+            .SingleOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<List<Student>> Get(Expression<Func<Student, bool>> expression)

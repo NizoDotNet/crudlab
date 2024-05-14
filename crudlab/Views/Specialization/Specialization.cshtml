@@ -41,7 +41,7 @@
                     {
                         <tr>
                             <td>
-                                @($"{i.Name} {i.Surname}")
+                                <a asp-controller="Student" asp-action="Get" asp-route-id="@i.Id">@($"{i.Name} {i.Surname}")</a>
                             </td>
                             <td>@i.Gpa</td>
                         </tr>

@@ -20,7 +20,8 @@ public class GradeService : IRepository<Grade>
 
     private async Task UpdateGpa(int studentId)
     {
-        var student = await _db.Students.FirstOrDefaultAsync(c => c.Id == studentId);
+        var student = await _db.Students.Include(c => c.Grades).FirstOrDefaultAsync(c => c.Id == studentId);
+        if(student is null) throw new ArgumentNullException(nameof(student));
         student.Gpa = _gpa.GetGpa(student.Grades);
     }
 

@@ -1,17 +1,52 @@
 ﻿@using crudlab.Models.DTO.Student
-@model AddStudentDto
+@model UpdateStudentDto
 
 <div class="container">
     <form method="post">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" />
-        <label asp-for="Surname"></label>
-        <input asp-for="Surname" />
-        <select asp-for="SpecializationId" asp-items="ViewBag.Specs">
+        <label asp-for="Student.Name"></label>
+        <input asp-for="Student.Name" />
+        <label asp-for="Student.Surname"></label>
+        <input asp-for="Student.Surname" />
+        <select asp-for="Student.SpecializationId" asp-items="ViewBag.Specs">
             <option></option>
         </select>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" asp-controller="Student" asp-action="Update" class="btn btn-primary">Submit</button>
 
     </form>
+    
+    <form method="post">
+        <select asp-for="Grade.SubjectId" asp-items="ViewBag.Subjects"></select>
+        <input asp-for="Grade.StudentId" readonly hidden />
+        <label asp-for="Grade.EntryScore"></label>
+        <input asp-for="Grade.EntryScore"/>
+        <label asp-for="Grade.ExamScore"></label>
+        <input asp-for="Grade.ExamScore" />
+        <button class="btn" asp-controller="Student" asp-action="AddGrade">Add</button>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Entry Score</th>
+                <th>Exam Score</th>
+                <th>Final Score</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var i in Model.Student.Grades)
+            {
+                <tr>
+                    <td>@i.Id</td>
+                    <td>@i.Subject.Name</td>
+                    <td>@i.EntryScore</td>
+                    <td>@i.ExamScore</td>
+                    <td>@(i.EntryScore + i.ExamScore)</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
 </div>
