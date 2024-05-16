@@ -4,17 +4,29 @@
 
 <div class="container">
     <form method="post">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" />
-        <label asp-for="Surname"></label>
-        <input asp-for="Surname" />
-        <label asp-for="Experience"></label>
-        <input asp-for="Experience" />
-        <select asp-for="SubjectIds" asp-items="ViewBag.Specs">
+        <div class="mb-3">
+            <label class="form-label" asp-for="Name"></label>
+            <input class="form-control" asp-for="Name" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Surname"></label>
+            <input class="form-control" asp-for="Surname" />
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label" asp-for="Experience"></label>
+            <input class="form-control" asp-for="Experience" />
+        </div>
+        
+        <select asp-for="SubjectIds" asp-items="ViewBag.Specs" class="form-select mb-3">
             <option></option>
         </select>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-end">
+
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
+
 
     </form>
 </div>

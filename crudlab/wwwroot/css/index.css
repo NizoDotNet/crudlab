@@ -1,0 +1,33 @@
+﻿.my-a {
+    text-decoration: none;
+    text-align: center;
+    padding-top: 10px;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    width: 200px;
+    height: 200px;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+
+
+i {
+    font-size: 100px;
+    margin-top: 30px;
+}
+
+i:hover {
+    color: yellow;
+}
+
+.row1 {
+    flex-wrap: nowrap;
+    display: flex;
+}
+
+.row2 {
+    flex-wrap: nowrap;
+    display: flex;
+}

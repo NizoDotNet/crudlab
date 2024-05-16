@@ -1,5 +1,4 @@
 ﻿using crudlab.DatabaseContext;
-using crudlab.MockDatabase;
 using crudlab.Repositories;
 using Entities;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +24,7 @@ public class TeacherService : IRepository<Teacher>
     public async Task Delete(int id)
     {
         var teacher = await _db.Teachers.SingleOrDefaultAsync(c => c.Id == id);
-        if( teacher != null)
+        if (teacher != null)
         {
             _db.Teachers.Remove(teacher);
             await _db.SaveChangesAsync();
@@ -57,7 +56,7 @@ public class TeacherService : IRepository<Teacher>
         var teacher = await _db.Teachers
             .Include(c => c.Subjects)
             .FirstOrDefaultAsync(c => c.Id == id);
-        
+
         if (teacher is not null)
         {
             teacher.Name = entity.Name;

@@ -7,6 +7,9 @@
     <p>Surname: @Model.Surname</p>
     <p>Speciality: <a asp-controller="Specialization" asp-action="Get" asp-route-id="@Model.SpecializationId"></a>@Model.Specialization.Name</p>
     <p>GPA: @Model.Gpa</p>
+    <a asp-action="Update" asp-route-id="@Model.Id" class="btn">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    <h5>Grades</h5>
     <table class="table">
         <thead>
             <tr>

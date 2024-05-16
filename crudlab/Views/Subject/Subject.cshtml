@@ -5,6 +5,9 @@
 
     <p>ID: @Model.Id</p>
     <p>Name: @Model.Name</p>
+    <a asp-action="Update" asp-route-id="@Model.Id" class="btn">Edit</a>
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+
     <div class="row">
         <div class="col">
             <h5>Specialities</h5>

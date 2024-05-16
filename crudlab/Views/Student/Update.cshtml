@@ -3,15 +3,23 @@
 
 <div class="container">
     <form method="post">
-        <label asp-for="Student.Name"></label>
-        <input asp-for="Student.Name" />
-        <label asp-for="Student.Surname"></label>
-        <input asp-for="Student.Surname" />
+        <div class="mb-3">
+            <label class="form-label" asp-for="Student.Name"></label>
+            <input class="form-control" asp-for="Student.Name" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Student.Surname"></label>
+            <input class="form-control" asp-for="Student.Surname" />
+        </div>
+
         <select asp-for="Student.SpecializationId" asp-items="ViewBag.Specs">
             <option></option>
         </select>
 
-        <button type="submit" asp-controller="Student" asp-action="Update" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-end">
+
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
 
     </form>
     

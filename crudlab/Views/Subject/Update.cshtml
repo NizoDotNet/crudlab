@@ -3,10 +3,15 @@
 
 <div class="container">
     <form method="post">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" />
+        <div class="mb-3">
+            <label class="form-label" asp-for="Name"></label>
+            <input class="form-control" asp-for="Name" />
+        </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="d-flex justify-content-end">
+
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+        </div>
 
     </form>
 </div>

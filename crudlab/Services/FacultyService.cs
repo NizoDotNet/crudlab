@@ -1,5 +1,4 @@
 ﻿using crudlab.DatabaseContext;
-using crudlab.MockDatabase;
 using crudlab.Repositories;
 using Entities;
 using Microsoft.EntityFrameworkCore;
@@ -28,10 +27,10 @@ public class FacultyService : IRepository<Faculty>
             .Include(c => c.Specializations)
             .ThenInclude(c => c.Students)
             .SingleOrDefaultAsync(c => c.Id == id);
-        if(faculty is not null)
+        if (faculty is not null)
         {
             _db.Faculties.Remove(faculty);
-            await _db.SaveChangesAsync();   
+            await _db.SaveChangesAsync();
         }
     }
 
@@ -44,7 +43,7 @@ public class FacultyService : IRepository<Faculty>
 
     public Task<List<Faculty>> Get(Expression<Func<Faculty, bool>> expression)
     {
-        return _db.Faculties.Where(expression).ToListAsync();   
+        return _db.Faculties.Where(expression).ToListAsync();
     }
 
     public async Task<IEnumerable<Faculty>> GetAll()
@@ -61,7 +60,7 @@ public class FacultyService : IRepository<Faculty>
     public async Task Update(int id, Faculty entity)
     {
         var faculty = await _db.Faculties.FirstOrDefaultAsync(c => c.Id == id);
-        if(faculty is not null)
+        if (faculty is not null)
         {
             faculty.Name = entity.Name;
             await _db.SaveChangesAsync();
